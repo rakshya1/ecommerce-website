@@ -17,8 +17,14 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js"></script>
+
     <!-- Khalti Checkout Script -->
-    <script src="https://khalti.s3.ap-south-1.amazonaws.com/KPG/dist/2020.12.17.0.0.0/khalti-checkout.iffe.js"></script>
+    <script
+      src="https://khalti.s3.ap-south-1.amazonaws.com/KPG/dist/2020.12.22.0.0.0/khalti-checkout.iffe.js"
+      strategy="lazyOnload"
+    ></script>
   </head>
   <body>
     <!-- Navbar -->
@@ -74,7 +80,6 @@
             <div class="col-md-7 mb-4 mb-md-0">
               <h3 class="mb-4">Billing Details</h3>
               <form id="checkoutForm" class="checkout-form">
-                <!-- All billing details inputs (First Name, etc.) remain the same -->
                 <div class="row">
                   <div class="col-md-6 form-group">
                     <label for="firstName">First Name</label
@@ -149,10 +154,9 @@
                 </p>
                 <button
                   type="submit"
-                  id="payment-button"
-                  class="btn btn-lg w-100"
+                  class="bg-emerald-500 hover:bg-emerald-600 w-full text-white font-semibold py-2 px-4 rounded transition-all"
                 >
-                  Pay with Khalti
+                  Pay with eSewa
                 </button>
               </form>
             </div>

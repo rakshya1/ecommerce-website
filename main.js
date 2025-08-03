@@ -120,17 +120,13 @@ function renderProducts(productList, containerId) {
   productList.forEach((product) => {
     const cardWrapper = document.createElement("div");
     cardWrapper.className = "col-lg-3 col-md-4 col-sm-6 mb-4";
-    cardWrapper.innerHTML = `<div class="card h-100"><img src="${
-      product.image
-    }" class="card-img-top" alt="${
-      product.name
-    }"><div class="card-body d-flex flex-column"><h5 class="card-title title">${
-      product.name
-    }</h5><p class="card-text price mt-auto">Rs ${product.price.toFixed(
-      2
-    )}</p><button class="btn add-to-cart-btn" data-product-id="${
-      product.id
-    }">Add to Cart</button></div></div>`;
+    cardWrapper.innerHTML = `<div class="card h-100"><img src="${product.image
+      }" class="card-img-top" alt="${product.name
+      }"><div class="card-body d-flex flex-column"><h5 class="card-title title">${product.name
+      }</h5><p class="card-text price mt-auto">Rs ${product.price.toFixed(
+        2
+      )}</p><button class="btn add-to-cart-btn" data-product-id="${product.id
+      }">Add to Cart</button></div></div>`;
     productGrid.appendChild(cardWrapper);
   });
   document
@@ -166,21 +162,16 @@ function renderCartPage() {
     const itemTotal = item.quantity * product.price;
     subtotal += itemTotal;
     const row = document.createElement("tr");
-    row.innerHTML = `<td><div class="d-flex align-items-center"><img src="${
-      product.image
-    }" alt="${
-      product.name
-    }" style="width: 60px; height: 60px; object-fit: cover; margin-right: 15px;"><span>${
-      product.name
-    }</span></div></td><td>Rs ${product.price.toFixed(
-      2
-    )}</td><td><input type="number" class="form-control quantity-input" value="${
-      item.quantity
-    }" min="1" data-product-id="${item.id}"></td><td>Rs ${itemTotal.toFixed(
-      2
-    )}</td><td><button class="btn btn-danger btn-sm remove-item-btn" data-product-id="${
-      item.id
-    }">×</button></td>`;
+    row.innerHTML = `<td><div class="d-flex align-items-center"><img src="${product.image
+      }" alt="${product.name
+      }" style="width: 60px; height: 60px; object-fit: cover; margin-right: 15px;"><span>${product.name
+      }</span></div></td><td>Rs ${product.price.toFixed(
+        2
+      )}</td><td><input type="number" class="form-control quantity-input" value="${item.quantity
+      }" min="1" data-product-id="${item.id}"></td><td>Rs ${itemTotal.toFixed(
+        2
+      )}</td><td><button class="btn btn-danger btn-sm remove-item-btn" data-product-id="${item.id
+      }">×</button></td>`;
     cartItemsBody.appendChild(row);
   });
   document.getElementById("cart-subtotal").innerText = `Rs ${subtotal.toFixed(
@@ -273,80 +264,78 @@ function handleRemoveItem(event) {
 /**
  * Main function to handle the Khalti checkout process.
  */
-function handleKhaltiCheckout(event) {
-  event.preventDefault(); // Stop the form from submitting and reloading the page
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("checkoutForm");
+  const totalDisplay = document.getElementById("checkout-total-price");
 
-  if (cart.length === 0) {
-    showToast("Your cart is empty. Please add items before paying.");
+  if (!form || !totalDisplay) {
+    console.error("Missing checkoutForm or checkout-total-price in HTML.");
     return;
   }
+  console.log("Checkout form and total display found." + totalDisplay);
 
-  const totalAmountText = document.getElementById(
-    "checkout-total-price"
-  ).innerText;
-  const totalAmount = parseFloat(totalAmountText.replace(/Rs\s*/, ""));
-  const orderId = `NYMPH-KLT-${Date.now()}`;
+  // If price is coming from HTML, just display what's already there (optional)
+  // Or extract it from input if needed
 
-  // Khalti's configuration object
-  const config = {
-    // Replace with your TEST PUBLIC KEY from sandbox.khalti.com
-    publicKey: "test_public_key_dc74e0fd57cb46cd93832aee0a390234",
-    productIdentity: orderId,
-    productName: "Nymph Ecommerce Order",
-    productUrl: window.location.origin,
-    paymentPreference: ["KHALTI", "EBANKING", "MOBILE_BANKING"],
-    eventHandler: {
-      onSuccess(payload) {
-        // This function is called after the user completes payment in the popup.
-        // The payment is NOT yet verified. We must do that on our backend.
-        console.log("Khalti Success Payload:", payload);
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
 
-        // Send the payload to your backend server for verification.
-        // NOTE: The URL 'http://localhost:3000/verify-khalti' must match your running backend server.
-        fetch("http://localhost:3000/verify-khalti", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            token: payload.token,
-            amount: payload.amount,
-          }),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            if (data.success) {
-              // This means our server confirmed the payment with Khalti.
-              console.log("Payment successfully verified by server!");
-              alert("Payment successful and verified!");
-              localStorage.removeItem("cart"); // Clear the cart
-              window.location.href = "/payment-success.html"; // Redirect to final success page
-            } else {
-              // This means our server told us the verification failed.
-              alert("Payment verification failed! Please contact support.");
-              window.location.href = "/payment-failure.html";
-            }
-          })
-          .catch((error) => {
-            // This happens if our backend server is down or there's a network error.
-            console.error("Verification request to your server failed:", error);
-            alert(
-              "Could not connect to the server for verification. Please contact support."
-            );
-          });
-      },
-      onError(error) {
-        console.error("Khalti Error:", error);
-        alert("Khalti payment failed.");
-      },
-      onClose() {
-        console.log("Khalti widget was closed by the user.");
-      },
-    },
-  };
+    const secretKey = "8gBm/:&EnhH.1/q";
+    const totalDisplay = document.getElementById("checkout-total-price");
 
-  const checkout = new KhaltiCheckout(config);
-  // Launch the Khalti popup. Amount must be in Paisa.
-  checkout.show({ amount: totalAmount * 100 });
-}
+    let totalAmount = 0;
+    if (totalDisplay) {
+      const text = totalDisplay.textContent || "";
+      const numericString = text.replace(/[^0-9.]/g, '');
+      totalAmount = parseFloat(numericString) || 0;
+    } else {
+      totalAmount = 0;
+    }
+
+    const deliveryCharge = 3;
+    const serviceCharge = 2;
+    const taxAmount = 5;
+    const amount = totalAmount - deliveryCharge - serviceCharge - taxAmount;
+
+    const uuid = "TXN" + Date.now();
+    const productCode = "EPAYTEST";
+
+    const signingString = `total_amount=${totalAmount},transaction_uuid=${uuid},product_code=${productCode}`;
+    const hash = CryptoJS.HmacSHA256(signingString, secretKey);
+    const signature = CryptoJS.enc.Base64.stringify(hash);
+
+    const formToSubmit = document.createElement("form");
+    formToSubmit.method = "POST";
+    formToSubmit.action = "https://rc-epay.esewa.com.np/api/epay/main/v2/form";
+    formToSubmit.target = "_blank";
+
+    const payload = {
+      amount: amount,
+      tax_amount: taxAmount,
+      total_amount: totalAmount,
+      transaction_uuid: uuid,
+      product_code: productCode,
+      product_service_charge: serviceCharge,
+      product_delivery_charge: deliveryCharge,
+      success_url: "https://example.com/success",
+      failure_url: "https://example.com/failure",
+      signed_field_names: "total_amount,transaction_uuid,product_code",
+      signature: signature,
+    };
+
+    for (const key in payload) {
+      const input = document.createElement("input");
+      input.type = "hidden";
+      input.name = key;
+      input.value = payload[key];
+      formToSubmit.appendChild(input);
+    }
+
+    document.body.appendChild(formToSubmit);
+    formToSubmit.submit();
+  });
+});
+
 
 // --- 6. MAIN EXECUTION SCRIPT (The Starting Point) ---
 document.addEventListener("DOMContentLoaded", () => {
