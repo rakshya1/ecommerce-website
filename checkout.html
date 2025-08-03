@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nymph - Checkout</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <!-- Khalti Checkout Script -->
+    <script src="https://khalti.s3.ap-south-1.amazonaws.com/KPG/dist/2020.12.17.0.0.0/khalti-checkout.iffe.js"></script>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <header>
+      <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+        <div class="container">
+          <a href="index.html" class="logo navbar-brand"> Nymph </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navlist navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a href="index.html" class="nav-link link">Home</a>
+              </li>
+              <li class="nav-item">
+                <a href="shop.html" class="nav-link link">Shop</a>
+              </li>
+              <li class="nav-item">
+                <a href="contact.html" class="nav-link link">Contact</a>
+              </li>
+            </ul>
+            <div class="nav-icons flex ms-lg-3">
+              <a href="#" class="icon nav-link"
+                ><i class="fa-solid fa-magnifying-glass"></i
+              ></a>
+              <a href="#" class="icon nav-link"
+                ><i class="fa-solid fa-user"></i
+              ></a>
+              <a href="cart.html" class="icon icon-active nav-link">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="cart-count-badge" id="cart-count">0</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main style="padding-top: 70px">
+      <section class="checkout-page container">
+        <h1 class="section-title">Checkout</h1>
+        <div id="checkout-content">
+          <div class="row">
+            <div class="col-md-7 mb-4 mb-md-0">
+              <h3 class="mb-4">Billing Details</h3>
+              <form id="checkoutForm" class="checkout-form">
+                <!-- All billing details inputs (First Name, etc.) remain the same -->
+                <div class="row">
+                  <div class="col-md-6 form-group">
+                    <label for="firstName">First Name</label
+                    ><input
+                      type="text"
+                      id="firstName"
+                      required
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <label for="lastName">Last Name</label
+                    ><input
+                      type="text"
+                      id="lastName"
+                      required
+                      class="form-control"
+                    />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="email">Email</label
+                  ><input
+                    type="email"
+                    id="email"
+                    required
+                    class="form-control"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="address">Address</label
+                  ><input
+                    type="text"
+                    id="address"
+                    required
+                    class="form-control"
+                  />
+                </div>
+                <div class="row">
+                  <div class="col-md-5 form-group">
+                    <label for="city">City</label
+                    ><input
+                      type="text"
+                      id="city"
+                      required
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="col-md-4 form-group">
+                    <label for="state">State</label
+                    ><input
+                      type="text"
+                      id="state"
+                      required
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="col-md-3 form-group">
+                    <label for="zip">ZIP Code</label
+                    ><input
+                      type="text"
+                      id="zip"
+                      required
+                      class="form-control"
+                    />
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <h3 class="mb-3">Payment</h3>
+                <p class="text-muted">
+                  Click the button below to pay securely with Khalti.
+                </p>
+                <button
+                  type="submit"
+                  id="payment-button"
+                  class="btn btn-lg w-100"
+                >
+                  Pay with Khalti
+                </button>
+              </form>
+            </div>
+            <div class="col-md-5">
+              <div class="order-summary-checkout">
+                <h4>Your Order</h4>
+                <ul id="checkout-order-summary-list"></ul>
+                <div class="total">
+                  <span>Total:</span
+                  ><span id="checkout-total-price">Rs 0.00</span>
+                </div>
+              </div>
+              <div class="mt-3 text-center">
+                <a href="cart.html" class="text-muted"
+                  ><i class="fas fa-arrow-left me-1"></i> Back to Cart</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          id="checkout-empty-message"
+          class="text-center p-5"
+          style="display: none"
+        >
+          <h2>Your cart is empty. Cannot proceed to checkout.</h2>
+          <a href="shop.html" class="btn mt-3">Go Shopping</a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p>© 2025 Nymph Ecommerce. All Rights Reserved.</p>
+        <p>
+          <a href="#" class="text-light me-2"
+            ><i class="fab fa-facebook-f"></i></a
+          ><a href="#" class="text-light me-2"><i class="fab fa-twitter"></i></a
+          ><a href="#" class="text-light"><i class="fab fa-instagram"></i></a>
+        </p>
+      </div>
+    </footer>
+
+    <!-- JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

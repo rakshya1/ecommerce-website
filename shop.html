@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nymph - Shop</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <header>
+      <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+        <div class="container">
+          <a href="index.html" class="logo navbar-brand"> Nymph </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navlist navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a href="index.html" class="nav-link link">Home</a>
+              </li>
+              <li class="nav-item">
+                <a href="shop.html" class="nav-link link link-active">Shop</a>
+              </li>
+              <li class="nav-item">
+                <a href="contact.html" class="nav-link link">Contact</a>
+              </li>
+            </ul>
+            <div class="nav-icons flex ms-lg-3">
+              <a href="#" class="icon nav-link"
+                ><i class="fa-solid fa-magnifying-glass"></i
+              ></a>
+              <a href="#" class="icon nav-link"
+                ><i class="fa-solid fa-user"></i
+              ></a>
+              <a href="cart.html" class="icon icon-active nav-link">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="cart-count-badge" id="cart-count">0</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main style="padding-top: 70px">
+      <section class="shop-page container">
+        <h1 class="section-title">Our Products</h1>
+
+        <!-- FIX: Cleaned up the filter/sort section and wrapped it in a proper row -->
+        <div class="row justify-content-end mb-4">
+          <div class="col-md-4">
+            <select id="sort-options" class="form-select">
+              <option value="default">Sort by Default</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="name-asc">Name: A to Z</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- FIX: Added the "row" class to this div -->
+        <div class="product-grid row" id="shop-product-grid">
+          <!-- Products will be loaded by JavaScript -->
+          <div class="p-5 text-center">Loading products...</div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Toast Notification Placeholder -->
+    <div id="toast-notification" class="toast-notification"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p>© 2025 Nymph Ecommerce. All Rights Reserved.</p>
+        <p>
+          <a href="#" class="text-light me-2"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a href="#" class="text-light me-2"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="text-light"><i class="fab fa-instagram"></i></a>
+        </p>
+      </div>
+    </footer>
+
+    <!-- JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

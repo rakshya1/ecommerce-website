@@ -1,0 +1,713 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  line-height: 1.6;
+  /* background-color: #c5c5c5; /* From your CSS, apply if desired */
+  background-color: #fff; /* Defaulting to white for cleaner contrast with elements */
+}
+:root {
+  /* Your color variables */
+  --white-clr: #fff;
+  --black-clr: #000;
+  --light-black: #333;
+  --primary-clr: #e6303d; /* Your primary red */
+  --secondary-clr: #eee; /* Your light gray */
+  --tag-clr: #7cc576; /* Green for 'new' tag */
+  --logo-clr: #d90166; /* Specific logo color */
+
+  /* My previous variables for reference or if needed by other parts not fully covered by new CSS */
+  --my-primary-color: #ff6f61;
+  --my-secondary-color: #4a4a4a;
+  --my-light-gray: #f8f9fa;
+  --my-text-color: #333;
+  --my-border-color: #ddd;
+}
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: var(--light-black); /* Default link color from your CSS */
+}
+a:hover {
+  color: var(--primary-clr);
+}
+img {
+  width: 100%;
+  height: 100%; /* Be cautious with 100% height on img if parent doesn't have fixed height */
+  object-fit: cover; /* Good for consistent image display */
+  display: block;
+  transition: transform 0.3s ease-in-out;
+}
+.flex {
+  display: flex;
+  align-items: center;
+}
+.container {
+  /* Your container style */
+  max-width: 80%;
+  margin: auto;
+}
+.section {
+  padding-top: 4rem;
+  padding-bottom: 4rem; /* Added for spacing */
+}
+.wrap {
+  flex-wrap: wrap;
+}
+.secondary-bg {
+  background: var(--secondary-clr);
+  padding-block: 2.2rem;
+}
+
+/*Navbar styling*/
+header {
+  background: var(--white-clr);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  box-shadow: 0px 5px 14px 0.75px rgba(36, 11, 12, 0.05); /* Corrected box-shadow syntax */
+}
+.logo {
+  font-size: 2.5rem; /* Slightly reduced for balance */
+  font-weight: bold;
+  color: var(--logo-clr); /* #d90166 */
+}
+.link {
+  font-size: 0.95rem;
+  color: var(--light-black);
+  text-transform: uppercase;
+  font-weight: 500;
+  padding: 0.5rem 0; /* Make links easier to click */
+}
+.link:hover,
+.link.link-active {
+  /* Added .link-active */
+  color: var(--primary-clr);
+}
+
+.icon {
+  /* For nav icons */
+  font-size: 1.2rem; /* Unified with previous size */
+  color: var(--light-black);
+  width: 40px; /* From your CSS (was part of color property before) */
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  border-radius: 50%;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Added transition */
+  position: relative; /* For badge */
+}
+.icon:hover,
+.icon.icon-active {
+  /* .icon-active for cart page link */
+  background-color: var(--secondary-clr);
+  color: var(--primary-clr); /* Ensure icon color changes on hover too */
+}
+.navbar {
+  /* Your .navbar class applied to the nav element */
+  height: 12vh; /* As per your CSS */
+  justify-content: space-between;
+}
+.navlist {
+  gap: 2rem; /* Adjusted from 2.5rem */
+}
+.nav-icons {
+  /* This class is on the icon wrapper in current HTML */
+  gap: 0.8rem;
+}
+.cart-count-badge {
+  /* Standard cart badge */
+  position: absolute;
+  top: 0px; /* Adjusted for better placement on 40x40 icon */
+  right: 0px; /* Adjusted */
+  background-color: var(--primary-clr); /* Use your primary red */
+  color: white;
+  border-radius: 50%;
+  padding: 1px 5px;
+  font-size: 0.65rem;
+  font-weight: bold;
+  border: 1px solid var(--white-clr); /* Optional border */
+}
+
+.hamburger {
+  font-size: 1.7rem;
+  color: var(--primary-clr);
+  display: none; /* Hidden by default */
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/*Section style*/
+.hero {
+  height: 100vh;
+  background-image: url("../images/banner.jpg");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative; /* For the overlay and absolute positioning of content */
+  margin-top: 5.5rem;
+  display: flex;
+  align-items: right;
+  justify-content: flex-end;
+  padding-right: 10%;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.35); /* Adjust transparency */
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  margin-top: 5.5rem;
+  z-index: 2;
+  color: var(--white-clr);
+  align-items: right;
+  justify-content: flex-end;
+}
+
+.hero-content h3 {
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 1.4;
+  margin-bottom: 0.75rem;
+  color: var(--white-clr);
+}
+
+.hero-content h1 {
+  font-size: 3rem; /* Adjust as needed */
+  line-height: 1.2;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+  color: var(--white-clr);
+}
+
+.hero-content h4 {
+  font-size: 1.1rem;
+  font-weight: 300;
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+  color: var(--white-clr);
+}
+.hero-content h1 .h3 .h4 {
+  position: absolute;
+  align-items: flex-end;
+  top: 40%;
+  transform: translateY(-50%);
+}
+button,
+.btn {
+  /* Styling your button and my .btn class */
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.8rem 2.2rem;
+  text-transform: uppercase;
+  color: var(--white-clr);
+  border: none;
+  background: var(--logo-clr); /* Using your pink logo color: #d90166 */
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  border-radius: 3px; /* Slight rounding */
+}
+button:hover,
+.btn:hover {
+  background: var(--light-black);
+  color: var(--white-clr);
+}
+
+/* For "View All Products" link if used */
+.view-products {
+  /* color: var(--primary-color); /* This was my variable, use yours */
+  color: var(--primary-clr);
+  font-weight: 500;
+  transition: color 0.3s ease-in-out; /* Corrected transition */
+  /* justify-content: right; /* This applies to flex container, not the link itself */
+  display: inline-block; /* If you want to align it */
+  margin-top: 1rem;
+}
+.view-products:hover {
+  /* color: var(--secondary-color); /* My variable */
+  color: var(--light-black);
+  text-decoration: underline;
+}
+.section-title {
+  align-items: center;
+  text-align: center;
+}
+
+/* Product Card Styling as per your CSS */
+.h2 {
+  /* General heading for sections like "Featured Products" */
+  font-size: 2.5rem; /* Adjusted */
+  line-height: 1.3;
+  color: var(--light-black);
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 3rem; /* Space after title */
+}
+.card-container {
+  display: flex; /* Added */
+  flex-wrap: wrap; /* Added */
+  justify-content: center; /* Your style */
+  gap: 1.5rem; /* Added gap between cards */
+  /* margin-top: 3rem; /* Moved to .h2 margin-bottom */
+  /* text-align: center; /* Card content will handle its own alignment */
+}
+.card {
+  /* border-right: 1px solid #efefef; /* Removed, use border on all sides or box-shadow */
+  border: 1px solid var(--secondary-clr); /* Light border for all cards */
+  /* flex: 1; /* Can cause issues if you want fixed number of cards per row */
+  flex-basis: calc(
+    25% - 1.5rem
+  ); /* Example for 4 cards per row, adjust for gap */
+  min-width: 280px; /* Minimum width for smaller screens before wrapping */
+  /* padding-block: 3.5rem; /* Excessive padding, adjust in card-content */
+  margin-bottom: 2rem; /* Spacing if cards wrap to new line */
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  background-color: var(--white-clr);
+  display: flex;
+  flex-direction: column;
+}
+.card:hover {
+  box-shadow: 0px 5px 19px 1px rgba(36, 11, 12, 0.15);
+  z-index: 3; /* Ensure it comes above others on hover */
+  transform: translateY(-5px); /* Slight lift effect */
+}
+.card img {
+  /* Image within the card */
+  height: 250px; /* Fixed height for product images */
+  object-fit: cover;
+}
+.card:hover img {
+  transform: scale(1.05); /* Slight zoom on image hover */
+}
+.card-content {
+  padding: 1rem 1.2rem; /* Adjusted padding */
+  text-align: center; /* Center text within card content */
+  flex-grow: 1; /* Allows content to grow and button to be at bottom */
+  display: flex;
+  flex-direction: column;
+}
+.title {
+  /* Product name */
+  font-size: 1rem;
+  color: var(--light-black);
+  line-height: 1.4; /* Adjusted */
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  min-height: 2.8em; /* Ensure space for two lines of title */
+}
+.price {
+  /* Container for price details */
+  margin-top: auto; /* Pushes price and button to bottom */
+  margin-bottom: 1rem; /* Space before button */
+}
+
+.card .add-to-cart-btn {
+  /* Specific styling for add to cart button inside card */
+  font-size: 0.9rem;
+  padding: 0.6rem 1.5rem;
+  /* background: var(--logo-clr); /* Already handled by general button style */
+}
+
+/* Boxes section styling (e.g., for features: Free Shipping, etc.) */
+.features-section {
+  /* Wrapper for the boxes */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 1rem;
+  background-color: var(
+    --secondary-clr
+  ); /* Light gray background for this section */
+  padding: 3rem 0;
+}
+.box {
+  flex: 1;
+  text-align: center;
+  /* margin-block: 1rem; /* Use gap in parent */
+  flex-basis: 200px; /* Minimum width */
+  padding: 1.5rem 1rem;
+}
+.box .fa-solid {
+  /* Icon style within a box */
+  font-size: 2.5rem; /* Larger icon */
+  color: var(--logo-clr); /* Icon color */
+  margin-bottom: 1rem;
+}
+.box h5 {
+  /* Title within a box */
+  font-size: 1.1rem;
+  color: var(--light-black);
+  font-weight: 600; /* Bolder */
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+}
+.box .des {
+  /* Description within a box */
+  color: #6e6e6e;
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.4;
+}
+.component {
+  /* Not sure what this is for, from your CSS */
+  color: var(--primary-clr);
+}
+
+/* Footer Styling */
+.footer {
+  /* My general footer class, adapt to yours */
+  background-color: var(--white-clr); /* Footer background */
+  color: var(--light-black);
+  padding-top: 3rem;
+  border-top: 1px solid var(--secondary-clr);
+}
+.footer-container {
+  /* Your specific footer container */
+  padding-bottom: 1rem; /* Reduced bottom padding */
+  /* display: flex; /* Added for layout */
+  /* flex-wrap: wrap; /* Added */
+  /* justify-content: space-between; /* Added */
+  /* gap: 2rem; /* Added */
+}
+/* Using Bootstrap grid for footer columns for now, can be replaced with flex */
+.footer-list {
+  /* flex: 1; /* If using flex */
+  /* padding-block: 1rem; /* Redundant if parent has padding */
+  /* flex-basis: 200px; /* If using flex */
+  margin-bottom: 2rem;
+}
+.footer-logo {
+  display: block; /* Make logo a block for margin */
+  margin-bottom: 1.5rem; /* Increased space */
+  font-size: 2.5rem; /* Match header logo size */
+  font-weight: bold;
+  color: var(--logo-clr);
+  text-align: left; /* Or center if preferred */
+}
+.footer-list h5 {
+  /* Titles for footer sections like "Quick Links" */
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  color: var(--light-black);
+}
+.footer-link {
+  font-size: 0.9rem;
+  text-transform: capitalize;
+  font-weight: 400; /* Regular weight */
+  color: var(--light-black); /* Use this color */
+  line-height: 2rem; /* Adjusted */
+  display: block; /* Make links block for better spacing */
+}
+.footer-link:hover {
+  color: var(--primary-clr);
+}
+.detail {
+  /* For text like address, contact info */
+  font-size: 0.95rem;
+  line-height: 1.7rem;
+  color: #6e6e6e;
+  margin-bottom: 0.5rem;
+}
+.footer-bottom {
+  padding-block: 1.5rem; /* Increased padding */
+  text-align: center;
+  color: #6e6e6e;
+  border-top: 1px solid var(--secondary-clr); /* Lighter border */
+  font-size: 0.9rem;
+}
+/* Syntax fix: Removed dot before cart-count-badge if it's part of footer-bottom */
+/* .footer-bottom .cart-count-badge { ... } /* If you intended to style it here */
+
+/* Styles for other pages (Cart, Checkout, Contact) - Basic from my previous CSS */
+/* These will need more specific styling based on your new design language if you provide it */
+.shop-page,
+.contact-page,
+.cart-page,
+.checkout-page {
+  padding-top: 4rem; /* Spacing from top */
+  padding-bottom: 4rem; /* Spacing at bottom */
+  min-height: 60vh; /* Ensure page has some height */
+}
+
+.filter-sort {
+  /* For shop page filters */
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background-color: var(--my-light-gray); /* Using my variable */
+  border-radius: 5px;
+  border: 1px solid var(--my-border-color);
+}
+
+/* Contact Page - using Bootstrap form classes for now */
+.contact-form input.form-control, /* Target Bootstrap's class */
+.contact-form textarea.form-control {
+  /* Bootstrap provides most styling, customize border/focus if needed */
+  border: 1px solid var(--my-border-color);
+}
+.contact-info p {
+  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
+}
+.contact-info p i {
+  margin-right: 0.75rem;
+  color: var(--logo-clr); /* Use a consistent icon color */
+  width: 20px; /* Align icons */
+}
+
+/* Cart Page - using some of my previous cart styles */
+.cart-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2rem;
+  font-size: 0.95rem;
+}
+.cart-table th,
+.cart-table td {
+  border: 1px solid var(--my-border-color);
+  padding: 0.75rem 1rem; /* Adjusted padding */
+  text-align: left;
+  vertical-align: middle;
+}
+.cart-table th {
+  background-color: var(--my-light-gray);
+  font-weight: 600;
+}
+.cart-table img {
+  width: 70px; /* Slightly larger */
+  height: 70px;
+  object-fit: cover;
+  margin-right: 10px;
+}
+.cart-table .quantity-input {
+  width: 70px; /* Adjusted */
+  padding: 0.5rem;
+  text-align: center;
+}
+.cart-summary {
+  border: 1px solid var(--my-border-color);
+  padding: 1.5rem;
+  background-color: var(--my-light-gray);
+  border-radius: 5px;
+}
+.cart-summary h3 {
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+.cart-summary p {
+  font-size: 1.05rem; /* Adjusted */
+  margin-bottom: 0.75rem;
+}
+.cart-summary .total-price {
+  font-size: 1.4rem; /* Adjusted */
+  font-weight: bold;
+  color: var(--primary-clr); /* Your primary red */
+}
+
+/* Checkout Page - using Bootstrap form classes mostly */
+.checkout-form .form-group {
+  margin-bottom: 1.5rem;
+}
+.checkout-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+/* Inputs will take Bootstrap styling via .form-control */
+
+.order-summary-checkout {
+  background-color: var(--my-light-gray);
+  padding: 1.5rem;
+  border-radius: 5px;
+  border: 1px solid var(--my-border-color);
+}
+.order-summary-checkout h4 {
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--my-border-color);
+  padding-bottom: 0.75rem;
+  font-weight: 600;
+}
+.order-summary-checkout ul {
+  list-style: none;
+  padding: 0;
+}
+.order-summary-checkout ul li {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+.order-summary-checkout .total {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--my-border-color);
+  color: var(--primary-clr); /* Your primary red */
+}
+
+/* Toast Notification CSS */
+.toast-notification {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #28a745; /* Green for success */
+  color: white;
+  padding: 15px 25px;
+  border-radius: 5px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  z-index: 1050;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+  font-size: 0.95rem;
+  min-width: 250px;
+  text-align: center;
+}
+.toast-notification.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.toast-notification.error {
+  background-color: #dc3545; /* Red for error */
+}
+
+/* Responsive adjustments for YOUR navbar */
+@media (max-width: 992px) {
+  /* Common breakpoint for navbar changes */
+  .container {
+    max-width: 90%; /* Slightly wider on tablets */
+  }
+  .navlist,
+  .nav-icons {
+    display: none; /* Hide them by default on small screens */
+    flex-direction: column;
+    align-items: flex-start; /* Align items to the start */
+    width: 100%;
+    position: absolute;
+    top: 12vh; /* Position below the header (header height) */
+    left: 0;
+    background-color: var(--white-clr);
+    border-top: 1px solid var(--secondary-clr);
+    padding: 1rem 0; /* Padding for the dropdown */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for dropdown */
+    z-index: 98; /* Below header but above content */
+  }
+
+  .navlist.active,
+  .nav-icons.active {
+    /* Class to show them when hamburger is clicked */
+    display: flex;
+  }
+
+  .navlist li {
+    width: 100%;
+  }
+  .navlist .link {
+    display: block; /* Make links full width */
+    padding: 0.75rem 2rem; /* Padding for mobile nav links (use container padding) */
+    text-align: left;
+  }
+
+  .nav-icons {
+    padding: 1rem 2rem; /* Padding for mobile icons block */
+    border-top: none; /* If navlist provides border */
+    align-items: flex-start;
+  }
+  .nav-icons .icon {
+    margin-bottom: 0.5rem; /* Spacing for icons in column */
+  }
+  .nav-icons .icon:last-child {
+    margin-bottom: 0;
+  }
+
+  .hamburger {
+    display: block; /* Show hamburger on small screens */
+  }
+
+  .hero-content h1 {
+    font-size: 2.8rem;
+  }
+  .hero-content h3 {
+    font-size: 1.5rem;
+  }
+  .hero-content h4 {
+    font-size: 1rem;
+  }
+
+  .card {
+    flex-basis: calc(50% - 1rem); /* 2 cards per row on tablets */
+    min-width: 0; /* Reset min-width */
+  }
+}
+
+@media (max-width: 767px) {
+  .container {
+    max-width: 95%; /* Even wider on mobile */
+  }
+  .hero {
+    height: auto; /* Let content define height */
+    min-height: 70vh;
+    padding: 3rem 0; /* Padding for hero content */
+  }
+  .hero-content h1 {
+    font-size: 2.2rem;
+  }
+  .hero-content h3 {
+    font-size: 1.3rem;
+  }
+  .hero-content h4 {
+    font-size: 0.9rem;
+  }
+  .hero-content button,
+  .hero-content .btn {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  .h2 {
+    font-size: 2rem;
+  }
+
+  .card {
+    flex-basis: 100%; /* 1 card per row on mobile */
+  }
+
+  /* Cart table adjustments for mobile if needed */
+  .cart-table {
+    font-size: 0.9rem;
+  }
+  .cart-table th,
+  .cart-table td {
+    padding: 0.5rem;
+  }
+  .cart-table img {
+    width: 50px;
+    height: 50px;
+  }
+}
